@@ -1,0 +1,17 @@
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+public class Border
+{
+	public Border(Double _width , Double _height, boolean _visible)
+	{
+		JFrame myFrame = new JFrame("This is my frame");
+		08
+		myFrame.setSize(300,400);
+		09
+		myFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		10
+		myFrame.setVisible(true);
+
+	}
+}

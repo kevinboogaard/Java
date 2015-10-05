@@ -1,0 +1,7 @@
+public class Border
+{
+	public Border(Double _width , Double _height, bool _visible)
+	{
+		
+	}
+}

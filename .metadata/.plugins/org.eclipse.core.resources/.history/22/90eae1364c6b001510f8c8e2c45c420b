@@ -1,0 +1,36 @@
+package com.zetcode;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import java.awt.EventQueue;
+
+public class Test extends JFrame{
+	
+	public void SimpleEx()
+	{
+		frame();
+	}
+
+	public static void frame()
+	{
+		JFrame myFrame = new JFrame("Frame FTW");
+		myFrame.setSize(300,400);
+		myFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		myFrame.setVisible(true);
+		System.out.println("hello world");
+	}
+	
+	public static void main(String[] args)
+	{
+
+			EventQueue.invokeLater(new Runnable() 
+			{
+				@Override
+	            public void run()
+	            {
+	            	SimpleEx ex = new SimpleEx();
+		            ex.setVisible(true);
+	            }
+            });
+	}
+}

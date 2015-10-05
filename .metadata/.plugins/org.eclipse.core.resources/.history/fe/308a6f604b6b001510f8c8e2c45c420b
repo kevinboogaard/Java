@@ -1,0 +1,33 @@
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import java.awt.EventQueue;
+
+class Test{
+	public static void main(String[] args)
+	{
+		
+		Show();
+EventQueue.invokeLater(new Runnable() {
+	        
+            @Override
+            public void run() {
+            	frame ex = new frame();
+                ex.setVisible(true);
+            }
+        });
+	}
+
+	private static void Show() 
+	{
+		
+	}
+
+	public static void frame()
+	{
+		JFrame myFrame = new JFrame("Frame FTW");
+		myFrame.setSize(300,400);
+		myFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		myFrame.setVisible(true);
+		System.out.println("hello world");
+	}
+}
