@@ -1,0 +1,41 @@
+package Main;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import Methods.Renderer;
+import Mathf.Vector2;
+
+public class Stage
+{
+	public static Stage stage;
+	
+	private JFrame _frame;
+
+	static
+	{	
+		Stage.stage = new Stage(1280, 800);
+	}
+	
+	private Stage(int _width , int _height)
+	{
+		_frame = new JFrame();
+		_frame.setSize(_width, _height);
+		_frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		_frame.setVisible(true);
+	}
+
+	public void ChangeFrame(Vector2 size, String title)
+	{
+		_frame.setTitle(title);
+		_frame.setSize(1280, 800);
+	}
+	
+	public void AddChild() throws IOException
+	{
+		final ImageIcon icon = new ImageIcon("C:\\Users\\kevin\\Desktop\\test.gif");
+		System.out.println("toevoegen van de kinderen");
+		Renderer.renderer.GetSprite(icon);
+	}
+}

@@ -1,0 +1,20 @@
+package Main;
+import java.io.IOException;
+
+import Methods.Renderer;
+
+public class Main
+{
+	
+	public void main(String[] args) throws IOException
+	{
+		if(Stage.stage != null) init();
+		else System.out.println("failt to add stage");
+	}
+	
+	private void init() throws IOException
+	{
+		System.out.println("init child");
+		Stage.stage.AddChild();
+	}
+}

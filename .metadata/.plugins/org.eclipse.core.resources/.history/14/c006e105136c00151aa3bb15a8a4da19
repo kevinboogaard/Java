@@ -1,0 +1,18 @@
+package Main;
+import java.io.IOException;
+
+import Methods.Renderer;
+
+public class Main
+{
+	
+	public void main(String[] args) throws IOException
+	{
+		if(Stage.stage != null) init();
+	}
+	
+	private void init() throws IOException
+	{
+		Stage.stage.AddChild();
+	}
+}

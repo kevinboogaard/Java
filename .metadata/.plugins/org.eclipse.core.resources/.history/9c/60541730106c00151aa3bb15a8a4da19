@@ -1,0 +1,16 @@
+package Main;
+import Methods.Renderer;
+
+public class Main
+{
+	
+	public static void main(String[] args)
+	{
+		if(Stage.stage)
+	}
+	
+	private void init()
+	{
+		
+	}
+}

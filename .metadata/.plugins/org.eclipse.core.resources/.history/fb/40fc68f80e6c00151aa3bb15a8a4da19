@@ -1,0 +1,15 @@
+package Methods;
+
+public class Renderer 
+{
+	public static Renderer renderer;
+	
+	public static void main(String[] args)
+	{	
+		Stage.stage = new Stage(100, 100, true, new Renderer);
+	}
+	
+	private Renderer() {
+		
+	}
+}

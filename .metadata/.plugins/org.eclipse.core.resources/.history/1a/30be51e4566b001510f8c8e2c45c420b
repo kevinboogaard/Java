@@ -1,7 +1,0 @@
-public class Main{
-	
-	public static void main(String[] args)
-	{
-		new Border(1920,1080,true);
-	}
-}

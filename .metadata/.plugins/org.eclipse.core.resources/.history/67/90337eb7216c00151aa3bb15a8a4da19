@@ -1,0 +1,24 @@
+package Main;
+import java.io.IOException;
+
+import Methods.Renderer;
+
+public class Main
+{
+	
+	public static void main(String[] args) 
+	{
+		if(Stage.stage != null) init();
+		else System.out.println("failt to add stage");
+	}
+	
+	private static void init() 
+	{
+		System.out.println("init child");
+		try {
+			Stage.stage.AddChild("lib\\URF.jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

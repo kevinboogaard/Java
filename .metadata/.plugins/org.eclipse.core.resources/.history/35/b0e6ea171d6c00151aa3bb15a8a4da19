@@ -1,0 +1,33 @@
+package Methods;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+
+
+public class Renderer 
+{
+	public static Renderer renderer;
+	
+	static
+	{	
+		Renderer.renderer = new Renderer();
+	}
+	
+	private Renderer() 
+	{
+		
+	}
+	
+	public JLabel GetSprite(String path) throws IOException
+	{
+		System.out.println("getsprite");
+		File file= new File(path);
+		BufferedImage image= ImageIO.read(file);
+		JLabel label = new JLabel(new ImageIcon(image));
+		return label;
+	}
+}
