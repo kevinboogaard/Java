@@ -1,7 +1,5 @@
 package Mathf;
 
-import Methods.Reflection;
-
 public class Vector2 {
 	public Double x;
 	public Double y;
@@ -26,11 +24,11 @@ public class Vector2 {
 	}
 	
 	public double dot(Vector2 vector) {
-		if (this.length != vector2.length) throw new RuntimeException(LENGTH_NOT_SAME);
+		if (this.length() != vector.length()) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
 		double result = 0.0;
 		for (int i = 0; i < 2; i++)
 		{
-			result = result + (this.location[i] * vector.location[i]));
+			result = result + (this.location(i) * vector.location(i));
 		}
 		return result;
 	}
@@ -40,40 +38,41 @@ public class Vector2 {
 	}
 	
 	public double distanceTo(Vector2 vector) {
-		if (this.length != vector2.length) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
+		if (this.length() != vector.length()) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
 		return this.minus(vector).magnitude();
 	}
 	
 	public Vector2 plus(Vector2 vector) {
-		if (this.length != vector2.length) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
+		if (this.length() != vector.length()) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
 		return new Vector2 (this.x + vector.x, this.y + vector.y);
 	}
 	
-	public Vector2 min(Vector2 vector) {
-		if (this.length != vector2.length) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
+	public Vector2 minus(Vector2 vector) {
+		if (this.length() != vector.length()) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
 		return new Vector2 (this.x - vector.x, this.y - vector.y);
 	}
 	
 	public Vector2 multiply(double factor) {
-		if (this.length != 2) throw new RuntimeException(LENGTH_ERROR);
+		if (this.length() != 2) throw new RuntimeException(LENGTH_ERROR);
 		return new Vector2 (factor * this.x, factor * this.y);
 	}
 	
 	public Vector2 multiply(Vector2 vector) {
-		if (this.length != vector2.length) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
+		if (this.length() != vector.length()) throw new RuntimeException(LENGTH_NOT_SAME_ERROR);
 		return new Vector2 (this.x * vector.y, this.y * vector.y);
 	}
 	
 	public Vector2 direction() {
 		if (this.magnitude() == 0.0) throw new RuntimeException(NO_DIRECTION_ERROR);
-		return this.times(1.0 / this.magnitude());	
+		return this.multiply(1.0 / this.magnitude());	
 	}
 	
 	public String toString() {
-		return "(" +  this.x + ", " + this.y + ")");	
+		return "(" +  this.x + ", " + this.y + ")";	
 	}
 	
-	public Vector2 cartesian(int i) {
+	public double location(int i) {
+		if (i <= this.length()) throw new RuntimeException(LENGTH_ERROR);
 		return _location[i];
 	}
 
