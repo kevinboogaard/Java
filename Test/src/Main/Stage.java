@@ -1,25 +1,18 @@
 package Main;
-import java.awt.Canvas;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageProducer;
-import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-
+import javax.swing.JLabel;
 import Mathf.Vector2;
 import Methods.Renderer;
 
-public class Stage
+public class Stage 
 {
 	public static Stage stage;
 	
-	private JFrame _frame;
-	private Canvas cnvs;
-
+	private static JFrame _frame;
+	
 	static
 	{	
 		Stage.stage = new Stage(1280, 800);
@@ -27,15 +20,11 @@ public class Stage
 	
 	private Stage(int _width , int _height)
 	{
-		_frame = new JFrame();
-		_frame.setSize(_width, _height);
-		_frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		
-		Canvas cnvs = new Canvas();
-		cnvs.setSize(_width,_height);
-		
-		_frame.getContentPane().add(cnvs);
-		_frame.setVisible(true);
+		_frame = new JFrame();	
+		_frame.setLocationRelativeTo(null);
+        _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _frame.setVisible(true);
+
 	}
 	public void ChangeFrame(Vector2 size, String title)
 	{
@@ -45,6 +34,8 @@ public class Stage
 	
 	public void AddChild(String path) throws IOException
 	{
-		BufferedImage image = Renderer.renderer.GetSprite(path);		
+		@SuppressWarnings("unused")
+		BufferedImage image = Renderer.renderer.GetSprite(path);
+		_frame.add(new JLabel(new ImageIcon(path)));
 	}
 }

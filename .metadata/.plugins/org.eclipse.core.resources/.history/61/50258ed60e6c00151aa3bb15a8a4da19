@@ -1,8 +1,0 @@
-package Methods;
-
-public class Renderer 
-{
-	private Renderer() {
-		
-	}
-}
