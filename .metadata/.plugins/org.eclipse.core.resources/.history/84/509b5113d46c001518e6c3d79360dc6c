@@ -1,0 +1,9 @@
+package Mathf;
+
+public class Mathf {
+	
+	public static int random(int _min, int _max)
+	{
+		
+	}
+}

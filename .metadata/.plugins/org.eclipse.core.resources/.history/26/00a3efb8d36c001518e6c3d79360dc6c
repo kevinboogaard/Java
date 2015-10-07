@@ -1,0 +1,7 @@
+package Mathf;
+
+public class Mathf {
+	public static var hi () {
+		
+	}
+}
