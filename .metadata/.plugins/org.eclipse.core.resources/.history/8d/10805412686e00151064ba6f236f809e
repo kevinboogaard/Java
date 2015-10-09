@@ -1,0 +1,13 @@
+package Methods;
+
+public class Library extends Behaviour{
+
+	protected void Begin() {
+		Initialize();
+	}
+
+	protected void Update() {
+		
+	}
+
+}

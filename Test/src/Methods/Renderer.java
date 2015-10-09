@@ -10,22 +10,23 @@ import javax.swing.*;
 public class Renderer extends Canvas
 {
 	private static final long serialVersionUID = 1L;
-	public static Renderer renderer;
 	
-	static
-	{	
-		Renderer.renderer = new Renderer();
-	}
-	
-	private Renderer() 
+	protected Renderer() 
 	{
 		
 	}
 	
-	public BufferedImage GetSprite(String path) throws IOException
+	public BufferedImage GetSprite(String path)
 	{
 		File file= new File(path);
-		BufferedImage image= ImageIO.read(file);
+		BufferedImage image = null; 
+		try {
+			System.out.println("Read");
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			System.out.println("Exception");
+			e.printStackTrace();
+		}
 		new JLabel(new ImageIcon(image));
 		return image;
 	}

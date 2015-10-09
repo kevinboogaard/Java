@@ -1,0 +1,19 @@
+package Main;
+
+import java.io.IOException;
+
+import Methods.Behaviour;
+
+public class Main extends Library
+{
+	public void Begin()
+	{
+		if(stage != null) init();
+		else System.out.println("Failed adding Stage.");
+	}
+	
+	private void init()
+	{
+		AddChild("lib\\URF.jpg");
+	}
+}

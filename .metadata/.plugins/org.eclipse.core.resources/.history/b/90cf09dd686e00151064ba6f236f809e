@@ -1,0 +1,18 @@
+package Main;
+
+import Methods.Behaviour;
+
+public class Main extends Behaviour
+{
+	protected void Begin()
+	{
+		super.Begin();
+		if(stage != null) init();
+		else System.out.println("Failed adding Stage.");
+	}
+	
+	protected void init()
+	{
+		AddChild("lib\\URF.jpg");
+	}
+}

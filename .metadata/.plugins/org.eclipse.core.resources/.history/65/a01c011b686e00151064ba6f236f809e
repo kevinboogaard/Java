@@ -1,0 +1,16 @@
+package Methods;
+
+public class Library extends Behaviour{
+
+	public static void main(String[] args)
+	{
+		Initialize();
+	}
+	
+	protected void Begin() {
+	}
+
+	protected void Update() {
+	}
+
+}

@@ -1,0 +1,21 @@
+package Methods;
+
+public class Library extends Behaviour{
+
+	private Libary()
+	{
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		new Library.Initialize();
+	}
+	
+	protected void Begin() {
+	}
+
+	protected void Update() {
+	}
+
+}

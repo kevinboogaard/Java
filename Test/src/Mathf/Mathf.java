@@ -3,7 +3,7 @@ package Mathf;
 import java.util.Random;
 
 public class Mathf {
-	
+
 	public static int random(int _max) {
 		Random rand = new Random();
 		return rand.nextInt((_max - 0) + 1) + 0;

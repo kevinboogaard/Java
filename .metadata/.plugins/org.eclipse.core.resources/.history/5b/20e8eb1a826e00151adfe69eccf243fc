@@ -1,0 +1,23 @@
+package Methods;
+
+import Main.Main;
+
+public class Tree extends Behaviour implements Runnable {
+
+	public static void main(String[] args) { 
+		new Tree().Start();
+		(new Thread(new HelloRunnable())).start();
+	}
+
+	protected void Begin() { 
+	}
+
+	protected void Update() {
+	}
+
+	@Override
+	public void run() {
+		System.out.println("test");
+		
+	}
+}

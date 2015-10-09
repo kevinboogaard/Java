@@ -1,0 +1,29 @@
+package Main;
+
+import Methods.Behaviour;
+
+public class Main extends Behaviour
+{
+	@Override
+	protected void Begin()
+	{
+		System.out.println("2");
+		if(stage != null) init();
+		else System.out.println("Failed adding Stage.");
+	}
+
+	@Override
+	protected void Update() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	protected void init()
+	{
+		AddChild("lib\\URF.jpg");
+	}
+
+	@Override
+	public void run() {
+	}
+}

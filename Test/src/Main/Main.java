@@ -1,15 +1,25 @@
 package Main;
 
-public class Main
+import Methods.Behaviour;
+import Methods.Tree;
+
+public class Main extends Tree
 {
-	public static void main(String[] args) throws Exception 
+	@Override
+	protected void Begin()
 	{
-		if(Stage.stage != null) init();
-		else System.out.println("failt to add stage");
+		if(stage != null) init();
+		else System.out.println("Failed adding Stage.");
+	}
+
+	@Override
+	protected void Update() {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	private static void init() throws Exception 
+	protected void init()
 	{
-		Stage.stage.AddChild("lib\\URF.jpg");
+		AddChild("lib\\URF.jpg");
 	}
 }
