@@ -1,0 +1,46 @@
+package Methods;
+
+import java.util.Timer;
+
+import Main.*;
+import Mathf.Vector2;
+
+public abstract class Behaviour
+{
+	protected Stage stage;
+	
+	protected long currentTime;
+	protected long previousTime = System.nanoTime();
+	protected long passedTime;
+	
+	protected int frames = 0;
+	protected int tickCount = 0;
+	
+	protected double unprocessedSeconds = 0;
+	protected double secondsPerTick = 1 / 60.0;
+	
+	protected boolean ticked = false;
+	protected boolean tickRunning = true;
+	
+	public void Start()
+	{	
+		stage = new Stage();
+		stage.ChangeFrame(new Vector2(1200, 800), "Four Pong; Remake", true, false, stage);
+		Begin();
+
+		while(true)
+		{
+			
+		}
+	}
+	
+	protected abstract void Begin();
+	
+	protected abstract void Tick();
+	protected abstract void FixedTick();
+	
+	protected void AddChild(String path)
+	{
+		//stage.AddChild(path, renderer);
+	}
+}

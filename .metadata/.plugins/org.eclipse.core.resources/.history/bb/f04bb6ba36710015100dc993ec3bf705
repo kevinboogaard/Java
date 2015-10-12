@@ -1,0 +1,38 @@
+package Methods;
+
+import Main.*;
+import Mathf.Vector2;
+
+public abstract class Behaviour
+{
+	protected Stage stage;
+	
+	private static final int tickCall = 1000;
+	private static final int fixedTickCall = 250;
+	
+	public void Start()
+	{	
+		stage = new Stage();
+		stage.ChangeFrame(new Vector2(1200, 800), "Four Pong; Remake", true, false, stage);
+		Begin();
+		while(true)
+		{
+			try
+			{
+				Thread.sleep(tickCall);
+			} catch(InterruptedException ie) {}
+
+			Update();
+		}
+	}
+	
+	protected abstract void Begin();
+	
+	protected abstract void Tick();
+	protected abstract void FixedTick();
+	
+	protected void AddChild(String path)
+	{
+		//stage.AddChild(path, renderer);
+	}
+}

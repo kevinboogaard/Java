@@ -1,0 +1,13 @@
+package Methods;
+
+import Mathf.Vector2;
+
+public class Tree extends Behaviour{
+
+	protected void Begin() { 
+		stage.ChangeFrame(new Vector2(800, 1200), "Four Pong; Remake", true, resizable, stage);
+	}
+
+	protected void Update() {
+	}
+}

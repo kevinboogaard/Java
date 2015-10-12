@@ -1,0 +1,19 @@
+package Methods;
+
+public class Tree extends Behaviour{
+
+	public static void main(String[] args) { 
+		//new Main().Start();
+		new Tree().Test();;
+	}
+	
+	public void Test() {
+		System.out.println(GetClass());
+	}
+
+	protected void Begin() { 
+	}
+
+	protected void Update() {
+	}
+}

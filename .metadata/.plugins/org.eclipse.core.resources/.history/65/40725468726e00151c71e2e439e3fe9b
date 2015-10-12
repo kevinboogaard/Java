@@ -1,5 +1,0 @@
-package Methods;
-
-public class Tree extends Behaviour{
-
-}

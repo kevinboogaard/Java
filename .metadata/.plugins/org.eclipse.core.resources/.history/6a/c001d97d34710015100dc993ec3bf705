@@ -1,0 +1,11 @@
+package Methods;
+
+public class Tree extends Behaviour{
+
+	protected void Begin() { 
+		stage.ChangeFrame(new Vector2(800, 1200), "Four Pong; Remake", visible, resizable, stage);
+	}
+
+	protected void Update() {
+	}
+}

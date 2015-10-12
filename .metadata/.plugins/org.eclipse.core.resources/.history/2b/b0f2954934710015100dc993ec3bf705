@@ -1,0 +1,81 @@
+package Main;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Mathf.Vector2;
+import Methods.GameObject;
+
+public class Stage extends JPanel
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static JFrame _frame;
+	public List<GameObject> spritesToRender = new ArrayList<>();
+	
+	public Stage(Vector2 size, String title)
+	{
+		_frame = new JFrame(title);
+		_frame.setSize((int)size.x, (int)size.y);
+		_frame.setVisible(true);
+		_frame.setResizable(false);
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		System.out.println("hi");
+		for(Object _gObject : spritesToRender) 
+		{
+			GameObject gObject = (GameObject) _gObject;
+			g.drawImage(gObject.GetSprite(), (int)gObject.position.x, (int)gObject.position.y, null);
+		}
+	}
+	
+	public Image GetSprite(String path)
+	{		
+		Image image = null;
+		try {
+			image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(path));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return image;
+	}
+	
+	public void ChangeFrame(Vector2 size, String title, boolean visible, boolean resizable,)
+	{
+		_frame.setTitle(title);
+		_frame.setSize((int)size.x, (int)size.y);
+		_frame.setVisible(visible);
+		_frame.setResizable(resizable);
+	}
+	
+	public void AddChild(GameObject child)
+	{
+		//_frame.add(child);
+	}
+}

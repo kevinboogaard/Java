@@ -1,0 +1,38 @@
+package Methods;
+
+import java.util.Timer;
+
+import Main.*;
+import Mathf.Vector2;
+
+public abstract class Behaviour
+{
+	protected Stage stage;
+	
+	protected boolean runTick = true;
+	
+	public void Start()
+	{	
+		stage = new Stage();
+		stage.ChangeFrame(new Vector2(1200, 800), "Four Pong; Remake", true, false, stage);
+		Begin();
+
+		double timePassed = 0;
+		double deltaTime = 0;
+		
+		while(runTick)
+		{
+			
+		}
+	}
+	
+	protected abstract void Begin();
+	
+	protected abstract void Tick();
+	protected abstract void FixedTick();
+	
+	protected void AddChild(String path)
+	{
+		//stage.AddChild(path, renderer);
+	}
+}

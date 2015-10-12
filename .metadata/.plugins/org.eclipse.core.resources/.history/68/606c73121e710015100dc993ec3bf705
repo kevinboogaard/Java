@@ -1,0 +1,19 @@
+package Methods;
+
+public class Tree extends Behaviour implements Runnable{
+
+	public static void main(String[] args) { 
+		//new Main().Start();
+	}
+
+	protected void Begin() { 
+	}
+
+	protected void Update() {
+	}
+
+	@Override
+	public void run() {
+		
+	}
+}

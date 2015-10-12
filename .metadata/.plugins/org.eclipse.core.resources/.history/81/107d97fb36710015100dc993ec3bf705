@@ -1,0 +1,23 @@
+package Methods;
+
+public class Tree extends Behaviour{
+
+	protected void Begin() { 
+		while(true)
+		{
+			try
+			{
+				Thread.sleep(tickCall);
+			} catch(InterruptedException ie) {}
+
+			Tick();
+		}
+	}
+
+	protected void Tick() {
+	}
+	
+	protected void FixedTick() {
+			
+	}
+}

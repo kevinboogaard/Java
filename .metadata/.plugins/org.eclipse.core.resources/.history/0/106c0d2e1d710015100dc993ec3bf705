@@ -1,0 +1,25 @@
+package Methods;
+
+import Main.Main;
+
+public class Tree extends Behaviour implements Runnable{
+
+	public static void main(String[] args) { 
+		//new Main().Start();
+		Thread t = new Thread(new Runnable() {
+			
+		});	
+	}
+
+	protected void Begin() { 
+	}
+
+	protected void Update() {
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+}

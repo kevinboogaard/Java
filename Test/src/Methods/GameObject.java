@@ -2,9 +2,10 @@ package Methods;
 
 import java.awt.Image;
 
+import Main.Stage;
 import Mathf.Vector2;
 
-public class GameObject extends Tree{
+public class GameObject {
 	public Vector2 position;
 	public Vector2 rotation;
 	public Vector2 scale;
@@ -25,13 +26,11 @@ public class GameObject extends Tree{
 		position = _position;
 		rotation = _rotation;
 		scale = _scale;
-		stage.spritesToRender.add(this);
 	}
 	
-	public void SetSprite(Image _img)
+	public void SetSprite(Stage stage, Image _img)
 	{
 		_sprite = _img;
-		stage.spritesToRender.add(this);
 	}
 	
 	public Image GetSprite()

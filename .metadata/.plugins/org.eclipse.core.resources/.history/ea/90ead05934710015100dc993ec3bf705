@@ -1,0 +1,7 @@
+package Methods;
+
+public class Tree extends Behaviour{
+
+	protected void Begin() { 
+	}
+}

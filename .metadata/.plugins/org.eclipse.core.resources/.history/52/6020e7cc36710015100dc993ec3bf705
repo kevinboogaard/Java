@@ -1,0 +1,21 @@
+package Methods;
+
+import Mathf.Vector2;
+
+public class Tree extends Behaviour{
+
+	protected void Begin() { 
+	}
+
+	@Override
+	protected void Tick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void FixedTick() {
+		// TODO Auto-generated method stub
+		
+	}
+}
