@@ -1,0 +1,8 @@
+package Methods;
+
+import Main.*;
+import Mathf.Vector2;
+
+public abstract class Behaviour
+{
+}

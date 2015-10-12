@@ -1,0 +1,20 @@
+package Main;
+
+import Methods.Behaviour;
+import Methods.Tree;
+import Methods.GameObject;
+public class Main extends Tree
+{
+	private GameObject test;
+	
+	protected void Begin()
+	{
+		if(stage != null) init();
+		else System.out.println("Failed adding Stage.");
+	}
+
+	protected void init()
+	{
+		
+	}
+}

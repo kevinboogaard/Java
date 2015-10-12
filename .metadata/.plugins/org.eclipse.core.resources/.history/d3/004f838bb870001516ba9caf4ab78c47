@@ -1,0 +1,37 @@
+package Main;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import Mathf.Vector2;
+import Methods.Renderer;
+
+public class Stage 
+{
+	private static JFrame _frame;
+	
+	public Stage(Vector2 size, String title)
+	{
+		_frame = new JFrame();	
+		_frame.setLocationRelativeTo(null);
+        _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _frame.setVisible(true);
+        ChangeFrame(size, title);
+
+	}
+	public void ChangeFrame(Vector2 size, String title)
+	{
+		_frame.setTitle(title);
+		_frame.setSize((int)size.x, (int)size.y);
+	}
+	
+	public void AddChild(String path, Renderer renderer)
+	{
+		@SuppressWarnings("unused")
+		JLabel image = renderer.GetSprite(path);
+		image.setSize(1000, 1000);
+		image.setLocation(0, 0);
+		_frame.add(image);
+		
+	}
+}

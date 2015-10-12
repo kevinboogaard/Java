@@ -1,9 +1,9 @@
 package Mathf;
 
 public class Vector2 {
-	public Double x;
-	public Double y;
-	
+	public double x;
+	public double y;
+
 	//crossproduct :  
 	// determinant (nl) -> "operatie"
 	
@@ -24,6 +24,14 @@ public class Vector2 {
 	public Vector2(Double _xLocation, Double _yLocation) {
 		_location[0] = _xLocation;
 		_location[1] = _yLocation;
+		
+		x = _location[0];
+		y = _location[1];
+	}
+	
+	public Vector2(int _xLocation, int _yLocation) {
+		_location[0] = (double)_xLocation;
+		_location[1] = (double)_yLocation;
 		
 		x = _location[0];
 		y = _location[1];

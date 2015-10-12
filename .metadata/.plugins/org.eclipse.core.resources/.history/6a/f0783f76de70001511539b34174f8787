@@ -1,0 +1,37 @@
+package Methods;
+
+import java.awt.Image;
+
+import Mathf.Vector2;
+
+public class GameObject extends Tree{
+	public Vector2 position;
+	public Vector2 rotation;
+	public Vector2 scale;
+
+	private Image _sprite;
+	
+	public GameObject(Vector2 _position, Vector2 _rotation, Vector2 _scale) 
+	{
+		position = _position;
+		rotation = _rotation;
+		scale = _scale;
+	}
+	
+	public void SetSprite(Image _img)
+	{
+		_sprite = _img;
+	}
+	
+	public void visible()
+	{
+	}
+	
+	public void destroy()
+	{
+		//Container parent = object.getParent();
+		//parent.remove(object);
+		//parent.validate();
+		//parent.repaint();
+	}
+}

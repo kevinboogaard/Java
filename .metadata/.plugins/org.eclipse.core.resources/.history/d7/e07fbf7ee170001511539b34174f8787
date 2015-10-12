@@ -1,0 +1,12 @@
+package Main;
+
+import Mathf.Vector2;
+import Methods.Behaviour;
+import Methods.Tree;
+import Methods.GameObject;
+
+public class Main extends Tree
+{
+	private GameObject test;
+	
+}

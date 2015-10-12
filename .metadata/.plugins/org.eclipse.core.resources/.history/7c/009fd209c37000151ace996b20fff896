@@ -1,0 +1,336 @@
+package Methods;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+public class Renderer extends Tree
+{
+	private Graphics2D _renderer;
+	
+	protected Renderer() 
+	{
+		
+	}
+	
+	protected void Update() {
+		
+	}
+	
+	public void Paint(Graphics g)
+	{
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHints(Graphics2D.ANTIALIASING, Graphics2D.ANTIALIAS_ON);
+		
+		GeneralPathTRENDING:Learn Java Java App Dev Build Automation Internet of Things Java Toolbox Open Source Java  Java 101 Resources/White Papers
+		 javaworld
+		 Most read:
+		 Search
+		 Core Java
+		 ALL CORE JAVA
+		 Client-side Java
+		 Design Patterns
+		 Java Concurrency
+		 Java Language
+		 Java Platform
+		 Java SE
+		 Java Security
+		 Programming Careers
+		 Enterprise Java
+		 ALL ENTERPRISE JAVA
+		 Architecture & Scalability
+		 Data Storage & Management
+		 Enterprise Application Integration
+		 Enterprise Application Performance
+		 Java EE
+		 Java Web Development
+		 Server-side Java
+		 Spring Framework
+		 Web Services
+		 Events
+		 ALL EVENTS
+		 Demo
+		 Java App Dev
+		 ALL JAVA APP DEV
+		 Application Servers
+		 Big Data
+		 Build Automation
+		 Cloud Computing
+		 Java Toolbox
+		 Open Source
+		 Rich Internet Applications
+		 Scripting and JVM Languages
+		 Testing & Debugging
+		 Web Application Frameworks
+		 Learn Java
+		 Mobile Java
+		 ALL MOBILE JAVA
+		 Java Android Development
+		 Java ME
+		 Java iOS Development
+		 News
+		 Features
+		 How-Tos
+		 Blogs
+		 Resources/White Papers
+		 Newsletters
+		 Home Core Java Java SE
+		 MEDIA PROGRAMMING
+		 By Bill Day HOW-TO
+		 Antialiasing, images, and alpha compositing in Java 2D
+		 MORE LIKE THIS
+		 Getting started with Java 2D
+		 3D graphics programming in Java, Part 1: Java 3D
+		 Add an undo/redo function to your Java apps with Swing
+		 Java 2D adds support for antialiased rendering, image transforms, and alpha compositing
+		         
+		 JavaWorld | Aug 1, 1998 1:00 AM PT
+		 RELATED TOPICS
+		 Java SE Learn Java Java App Dev Client-side Java Java APIs Speech Recognition
+		 COMMENTS
+		 Last month, I introduced some basic notions of Java 2D: that all 2D objects can be manipulated using AffineTransforms, that arbitrary paths can be constructed and shapes filled using GeneralPaths, and that text strings are drawn and operated on just like any other shape in Java 2D. This month, I'll continue the discussion by presenting the solution to last month's aliasing problem. I'll also illustrate how to use one shape to clip another, and delve into the new image-manipulation capabilities provided by Java.
+
+		 What is aliasing, and how do you avoid it?
+
+		 Aliasing occurs when a signal (in this case, a 2D graphics signal) is sampled and quantized from a continuous space into a discretized space. Sampling is the process of reading a value from a continuously varying signal. Quantization is the process by which these continuous sampled values are assigned a discrete value in the finite space represented by digital (binary-based) systems.
+
+		 Aliasing is a by-product of this quantization. Humans perceive this by-product visually as abrupt changes in color from pixel to pixel. Graphics professionals often refer to these jagged edges as jaggies.
+
+		 In general, aliasing is a bad thing. It leads to lower-quality signals of all kinds. In fact, if you look closely at the examples in last month's column, especially those with slanted and curved edges, you can see aliasing effects all the way back to Example02. (Example01's lines are drawn parallel and perpendicular to the scan-line direction of the computer screen, so there are no quantization errors.)
+
+		 If you are not familiar with aliasing effects, you can refer to any decent graphics or signal processing textbook for much more in-depth information. Charles Poynton's A Technical Introduction to Digital Video (John Wiley & Sons; ISBN: 047112253X) gives a particularly good description of aliasing as it pertains to video signals. If you are familiar with aliasing, but would like a quick refresher, see the Resources section for a link to "The Truth about Antialiasing" by Jonathan Knudsen.
+
+		 So, how do you handle aliasing? Java 2D lets you set one of several rendering hints to indicate that you would like for your 2D graphics to be drawn using antialiasing algorithms -- which smoothes the edges. Note that I said hints: Whichever Java 2D implementation you're using, it is allowed to decide whether or not to follow the hint and carry out the antialiasing as requested.
+
+		 Let's compare the aliased output from last month's Example04 to some antialiased output, generated from Example05.
+
+		 001   /**
+		 002    * In previous examples, we saw some jagged edges due to aliasing.
+		 003    * Example05 illustrates how to use rendering hints to request
+		 004    * an anti-aliased render from Graphics2D.
+		 005    **/
+		 006   public void paint(Graphics g) {
+		 007     Graphics2D g2d = (Graphics2D) g;
+		 008
+		 009     //This time, we want to use anti-aliasing if possible
+		 010     //to avoid the jagged edges that were so prominent in
+		 011     //our last example.  With ask the Java 2D rendering
+		 012     //engine (Graphics2D) to do this using a "rendering hint".
+		 013     g2d.setRenderingHints(Graphics2D.ANTIALIASING,
+		 014        Graphics2D.ANTIALIAS_ON);
+		 015
+		 016     //We reuse our GeneralPath filled shape.  We translate
+		 017     //and rotate this shape as we did before.
+		 018     GeneralPath path = new GeneralPath(GeneralPath.EVEN_ODD);
+		 019     path.moveTo(0.0f,0.0f);
+		 020     path.lineTo(0.0f,125.0f);
+		 021     path.quadTo(100.0f,100.0f,225.0f,125.0f);
+		 022     path.curveTo(260.0f,100.0f,130.0f,50.0f,225.0f,0.0f);
+		 023     path.closePath();
+		 024
+		 025     AffineTransform at = new AffineTransform();
+		 026     at.setToRotation(-Math.PI/8.0);
+		 027     g2d.transform(at);
+		 028     at.setToTranslation(0.0f,150.0f);
+		 029     g2d.transform(at);
+		 030
+		 031     g2d.setColor(Color.green);
+		 032     g2d.fill(path);
+		 033
+		 034     Font exFont = new Font("TimesRoman",Font.PLAIN,40);
+		 035     g2d.setFont(exFont);
+		 036     g2d.setColor(Color.black);
+		 037     g2d.drawString("JavaWorld",0.0f,0.0f);
+		 038   }
+		 The effects of the antialiasing are shown below.
+
+
+		 Antialiasing renders graphics with smoother edges.
+		 You request antialiased rendering by calling Graphics2D.setRenderingHints(Graphics2D.ANTIALIASING,Graphics2D.ANTIALIAS_ON) (lines 013 and 014). Antialiasing and the other rendering hints are discussed in more detail in the Java 2D API javadoc documentation.
+
+		 So if aliasing is always bad, and antialiasing algorithms are available (assuming your Java runtime environment supports the rendering hint), then why not just perform antialiasing calculations all the time? The simple answer is performance. Antialiasing algorithms take longer to compute than their less-complicated aliasing brethren, slowing down your rendering times. Example05 is noticeably slower than Example04 on most current Pentium PC-class machines, though it still renders in a few hundred milliseconds.
+
+		 In applications that render something only once, or rather infrequently, and where rendering speed is not particularly important, you should probably turn on the antialiasing hint to get better renders. Such applications include CAD systems and image manipulation tools. However, if an applications requires the fastest possible rendering speed, and aliasing will be less noticeable, antialiasing is undesirable. In twitch video games, for example, fast renders are much more important than jagged edges. As with many programming and engineering details, you as the application programmer need to understand the requirements of your problem domain and decide what is best for your particular application.
+
+		 If it makes sense for your application, you could even leave the decision to the end user. For a CAD application, for instance, you could provide a switch to turn antialiasing on and off, depending on the user's needs. This switch would let the user change the rendering hints at runtime and then automatically repaint the graphics.
+
+		 Clipping paths
+
+		 Last month I told you that any text string can be used as a Shape. This allows you to perform several interesting graphics manipulations with text. One of the more useful of these manipulations is clipping.
+
+		 Clipping allows you to use a specified path as a sort of stencil set on top of previously laid graphics. Java 2D supports clipping using any arbitrary Shape. You can clip with shapes you draw yourself, including shapes you create using a GeneralPath. Because you can use StyledString.getStringOutline() to get the Shape for a string of text, you can also clip with that text.
+
+		 Example06 modifies the paint() method one more time. I've left antialiasing on, and draw the same four-sided path. This time, however, instead of drawing the text string, I use its shape to specify where the path-created object is filled. (Note that you also need to import the package containing StyledString by adding import java.awt.font.*; to the source file.)
+
+		 001   /**
+		 002    * We use StyledString.getStringOutline() to get the Shape of
+		 003    * some text, which we then use to clip our GeneralPath.
+		 004    **/
+		 005   public void paint(Graphics g) {
+		 006     Graphics2D g2d = (Graphics2D) g;
+		 007
+		 008     //Again, we use anti-aliasing if possible.
+		 009     g2d.setRenderingHints(Graphics2D.ANTIALIASING,
+		 010        Graphics2D.ANTIALIAS_ON);
+		 011
+		 012     GeneralPath path = new GeneralPath(GeneralPath.EVEN_ODD);
+		 013     path.moveTo(0.0f,0.0f);
+		 014     path.lineTo(0.0f,125.0f);
+		 015     path.quadTo(100.0f,100.0f,225.0f,125.0f);
+		 016     path.curveTo(260.0f,100.0f,130.0f,50.0f,225.0f,0.0f);
+		 017     path.closePath();
+		 018
+		 019     AffineTransform at = new AffineTransform();
+		 020     at.setToRotation(-Math.PI/8.0);
+		 021     g2d.transform(at);
+		 022     at.setToTranslation(0.0f,150.0f);
+		 023     g2d.transform(at);
+		 024
+		 025     Font exFont = new Font("TimesRoman",Font.PLAIN,80);
+		 026     g2d.setFont(exFont);
+		 027
+		 028     //Now, we want to create a string and then use its outline
+		 029     //to clip our green GeneralPath object drawn above.  We
+		 030     //do this by creating a StyledString, getting its StringOutline
+		 031     //(which is a Shape object like GeneralPath), then setting
+		 032     //the clipping shape to be the string and filling the path.
+		 033     StyledString exString = new StyledString ("JavaWorld", exFont);
+		 034     Shape exShape = exString.getStringOutline();
+		 035     g2d.setClip(exShape);
+		 036     g2d.setColor(Color.green);
+		 037     g2d.fill(path);
+		 038   }
+		 Note that StyledString will be deprecated with JDK 1.2 beta 4 (currently listed by Sun as due some time in late July 1998). Members of the Java 2D team have stated on the java2d-interest mailing list that this functionality will be replaced by a couple of new classes in the beta 4 release. I will update the example code for the JDK 1.2 beta 4 changes and make it available on my personal Web site.
+
+		 In the following figure, you can see a portion of the green object showing through the overlaid (stencil) portion of the clipping text. Only that portion of the object lying directly beneath the text string's letters can be seen through this stencil.
+
+
+		 The string JavaWorld is used to clip the green shape. With Java 2D, you can use any Shape object to clip any other Shape .
+		 Clipping can be used for a lot of interesting effects. You could, for instance, use a circle shape to clip a complicated 2D shape, and move this circle around to simulate a spotlight moving across your 2D graphics. All sorts of intersections and cuts can be created with fairly simple clipping operations. Powerful stuff, indeed!
+
+		 Imaging in Java 2D
+
+		 Java 2D expands upon Java 1.0- and 1.1-style producer-consumer imaging (see Resources for more on this model) by allowing any of the regular 2D manipulations to be performed on images -- such as affine transforms and clipping. In addition, Java 2D adds a new buffer-based imaging model. This model gives programmers better access to the image's color information, and control over the raster -- the array that specifies the color values for each individual pixel in the image.
+
+		 Whereas in Java 1.1 a call to a java.awt.Toolkit's or AWT Component's createImage(int width, int height) method returns a platform-specific implementation of the java.awt.Image interface, a createImage() call to Java 1.2 toolkits and components returns a java.awt.image.BufferedImage object.
+
+		 In this column, I will illustrate some of the new features available to all Image objects, including BufferedImages. I'll leave the discussion of the new BufferedImageOp manipulations for next month's image processing column.
+
+		 Transforms galore
+
+		 You can perform the same kinds of transformations on images that you can perform on shapes, text strings, and other 2D graphics objects -- including the translation, rotation, scaling, and shearing transformations that we discussed last month.
+
+		 In addition, images are considered to have their own Image Space. This space is a third space, a coordinate system from which the images are converted first into User Space and ultimately into Device Space for rendering. (Recall from last month that Device Space is the area into which the graphics will be rendered on the screen. This is analogous to the coordinates that are used when you create regular AWT-style, Graphics-based 2D graphics. User Space, however, is a translatable, rotatable coordinate system that may be operated on by one or more AffineTransforms).
+
+		 Just as AffineTransforms may be used to transform the conversion of User Space objects into Device Space, they may also be used to transform Image Space-to-User Space conversions.
+
+		 Example07 illustrates some Image-to-User and User-to-Device image transformations. For a good chuckle, I decided to transform and distort an image of myself (my JavaWorld column photograph), so you will see three images of me drawn after applying various transformations.
+
+		 Here is how I manipulated the image.
+
+		 1 2 NEXT 
+		 View 2 Comments
+		 Recommended
+		 0 intro title
+		 Tech Salary Guide for 2015
+		 modular java
+		 Modularity in Java 9: Project Jigsaw, Penrose, and OSGi
+		 container stack
+		 Get ready for the new stack
+		 simplicity
+		 Win with APIs by keeping it simple
+		 Hands-on with HP's collectible Star Wars Special Edition Laptop
+		 Hands-on with HP's Surface clone: The Spectre 12 X2
+		 Join the discussionOur Commenting Policies
+		 Login
+
+		 2 Comments
+		 SubscribeRSS
+
+		 2412 days ago
+		 Anonymous
+		 Try this
+		 import java.awt.RenderingHints;
+		 // Anti Aliasing
+		 RenderingHints rh = g.getRenderingHints(); rh.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		 g.setRenderingHints (rh);
+		 LikeReplyShare0
+
+		 2414 days ago
+		 Anonymous
+		 Compilation errors
+		 Import,
+		 import java.awt.RenderingHints;
+		 and change:
+		 g2d.setRenderingHints(Graphics2D.ANTIALIASING,Graphics2D.ANTIALIAS_ON);
+		 to:
+		 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		 LikeReplyShare0
+		 Popular on JavaWorld
+		 speed light curves fast
+		 Java: The once and future king of Internet programming
+		 Would you believe that Java is poised to dominate the next explosion of the Internet? Built for...
+
+		 http2
+		 HTTP/2: A jump-start for Java developers
+		 stack of books
+		 Learn Java from the ground up
+		 Newsletters
+		 Stay up to date on the latest tutorials and Java community news posted on JavaWorld
+		 Get our Enterprise Java newsletter
+
+
+		 Enter your email address
+		  GO
+		  Java
+		 Review: The big 4 Java IDEs compared
+		 Find out how Eclipse, NetBeans, JDeveloper, and IntelliJ IDEA stack up today in capabilities and ease...
+
+		  Apache Spark
+		 Open source Java projects: Apache Spark
+		 Set up and use Spark to analyze data contained in Hadoop, Splunk, files on a file system, local...
+
+		 Featured Stories
+		 terrytown dodge charger hubcap wheel
+		 AWS Mobile Hub streamlines app dev
+		 Amazon introduces Mobile Hub for easier, faster app delivery and adds Python support to AWS Lambda.
+
+		  java mobile project
+		 Oracle considers a new effort to develop mobile Java apps
+		 The OpenJDK community has until Oct. 12 to vote on the proposal to ease development for iOS, Android,...
+
+		  facebook thumbs up sign
+		 Facebook gives Android a kick in the byte code
+		 Facebook turns its attention to the Redex project for optimizing Java bytecode to improve Android...
+
+		 Where to start with containers and microservices
+		 Containers and microservices are groundbreaking technologies, but adoption is still a struggle in some...
+
+		 JavaWorld JavaWorld is the original independent resource for Java developers, architects, and managers. FOLLOW US
+		 CORE JAVA  ENTERPRISE JAVA  EVENTS  JAVA APP DEV  LEARN JAVA  MOBILE JAVA
+		 How-Tos Features News Blogs Resources Newsletters
+		 ABOUT US CONTACT PRIVACY POLICY ADVERTISING CAREERS AT IDG SITE MAP AD CHOICES
+		 Copyright © 1994 - 2015 JavaWorld, Inc. All rights reserved.
+		 Explore the IDG Network descend
+
+	}
+	
+	public JLabel GetSprite(String path)
+	{
+		File file= new File(path);
+		BufferedImage image = null; 
+		try {
+			System.out.println("Read");
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			System.out.println("Exception");
+			e.printStackTrace();
+		} 
+		return new JLabel(new ImageIcon(image));
+	}
+}

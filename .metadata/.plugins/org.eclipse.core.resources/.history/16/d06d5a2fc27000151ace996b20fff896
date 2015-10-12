@@ -1,0 +1,36 @@
+package Methods;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.Graphics2D;
+
+public class Renderer extends Tree
+{
+	private Graphics2D _renderer;
+	
+	protected Renderer() 
+	{
+		
+	}
+	
+	protected void Update() {
+		renderer.
+	}
+	
+	public JLabel GetSprite(String path)
+	{
+		File file= new File(path);
+		BufferedImage image = null; 
+		try {
+			System.out.println("Read");
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			System.out.println("Exception");
+			e.printStackTrace();
+		} 
+		return new JLabel(new ImageIcon(image));
+	}
+}

@@ -1,0 +1,49 @@
+package Methods;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.geom.GeneralPath;
+
+public class Renderer extends Tree
+{
+	private Graphics2D _renderer;
+	
+	protected Renderer() 
+	{
+		
+	}
+	
+	protected void Update() {
+		
+	}
+	
+	public void Paint(Graphics g)
+	{
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.ANTIALIAS_ON);
+		
+		GeneralPath path = new GeneralPath(GeneralPath.EVEN_ODD);
+		path.moveTo(0.0f, 0.0f);
+		path.lineTo(0.0f, 125.0f);
+		path.closePath();
+	}
+	
+	public JLabel GetSprite(String path)
+	{
+		File file= new File(path);
+		BufferedImage image = null; 
+		try {
+			System.out.println("Read");
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			System.out.println("Exception");
+			e.printStackTrace();
+		} 
+		return new JLabel(new ImageIcon(image));
+	}
+}
