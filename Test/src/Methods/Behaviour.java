@@ -1,7 +1,5 @@
 package Methods;
 
-import java.util.Timer;
-
 import Main.*;
 import Mathf.Vector2;
 
@@ -42,17 +40,17 @@ public abstract class Behaviour
 				tickCount++;
 				if (tickCount % 60 == 0) {
 					previousTime += 1000;
-					frames = 0;
+					setFrames(0);
 				}
 			}
 			
 			if (ticked) {
 				stage.Render();
-				frames++;
+				setFrames(getFrames() + 1);
 			}
 			
 			stage.Render();
-			frames++;
+			setFrames(getFrames() + 1);
 		}
 	}
 	
@@ -61,8 +59,16 @@ public abstract class Behaviour
 	protected abstract void Tick();
 	protected abstract void FixedTick();
 	
-	protected void AddChild(String path)
+	protected void AddChild(GameObject child)
 	{
-		//stage.AddChild(path, renderer);
+		stage.AddChild(child);
+	}
+
+	public int getFrames() {
+		return frames;
+	}
+
+	public void setFrames(int frames) {
+		this.frames = frames;
 	}
 }

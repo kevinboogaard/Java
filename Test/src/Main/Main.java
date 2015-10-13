@@ -20,32 +20,32 @@ public class Main extends Tree
 
 	protected void init()
 	{
-		ball = new GameObject(stage.GetSprite("lib/BAL.jpg"), new Vector2(stage.screenSize.x / 2, stage.screenSize.y / 2), new Vector2(0,0), new Vector2(1,1));
-		stage.AddChild(ball);
+		ball = new GameObject(stage.GetSprite("lib/ASSET_BAL.jpg"), new Vector2(stage.screenSize.x / 2, stage.screenSize.y / 2), new Vector2(0,0), new Vector2(1,1));
+		AddChild(ball);
 		
 		velocity = new Vector2(-11, -2);
 	}
 	
 	protected void Tick()
 	{
-		ball.position = ball.position.plus(new Vector2(velocity.x / 2, velocity.y / 2));
+		ball.position = ball.position.plus(new Vector2(velocity.x, velocity.y));
 		
-		if (ball.position.x < stage.getWidth() / 2)
+		if (ball.position.x < stage.getWidth())
 		{
 			velocity.x = -velocity.x;
 		}
 		
-		if (ball.position.x > stage.screenSize.x - stage.getWidth() / 2)
+		if (ball.position.x > stage.screenSize.x - stage.getWidth())
 		{
 			velocity.x = -velocity.x;
 		}
 		
-		if (ball.position.y < stage.getHeight() / 2)
+		if (ball.position.y < stage.getHeight())
 		{
 			velocity.y = -velocity.y;
 		}
 		
-		if (ball.position.y > stage.screenSize.y - stage.getHeight() / 2)
+		if (ball.position.y > stage.screenSize.y - stage.getHeight())
 		{
 			velocity.y = -velocity.y;
 		}
